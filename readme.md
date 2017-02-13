@@ -1,40 +1,96 @@
-<p align="center"><img src="https://laravel.com/assets/img/components/logo-laravel.svg"></p>
+## Gousto TEST API
 
-<p align="center">
-<a href="https://travis-ci.org/laravel/framework"><img src="https://travis-ci.org/laravel/framework.svg" alt="Build Status"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://poser.pugx.org/laravel/framework/d/total.svg" alt="Total Downloads"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://poser.pugx.org/laravel/framework/v/stable.svg" alt="Latest Stable Version"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://poser.pugx.org/laravel/framework/license.svg" alt="License"></a>
-</p>
+## Author Ryan Morris
 
-## About Laravel
+## Introduction
 
-Laravel is a web application framework with expressive, elegant syntax. We believe development must be an enjoyable, creative experience to be truly fulfilling. Laravel attempts to take the pain out of development by easing common tasks used in the majority of web projects, such as:
+I have included the vendor files within this solution so composer install will not be necessary here.
+This application was tested using postman and below I will give you all the neccessary api endpoints.
 
-- [Simple, fast routing engine](https://laravel.com/docs/routing).
-- [Powerful dependency injection container](https://laravel.com/docs/container).
-- Multiple back-ends for [session](https://laravel.com/docs/session) and [cache](https://laravel.com/docs/cache) storage.
-- Expressive, intuitive [database ORM](https://laravel.com/docs/eloquent).
-- Database agnostic [schema migrations](https://laravel.com/docs/migrations).
-- [Robust background job processing](https://laravel.com/docs/queues).
-- [Real-time event broadcasting](https://laravel.com/docs/broadcasting).
+I have created api secure endpoints using the passport library which has been included into this solution.
+So in order to store, delete recipies etc you will need a bearer token first, this will also be included in the endpoints.
 
-Laravel is accessible, yet powerful, providing tools needed for large, robust applications. A superb combination of simplicity, elegance, and innovation give you tools you need to build any application with which you are tasked.
+The way I have structured this application is we have relationship tables all linking to the recipies table,
+the transformer identifies the link based on their ids and performs an action accordingly.
 
-## Learning Laravel
+## Endpoints
 
-Laravel has the most extensive and thorough documentation and video tutorial library of any modern web application framework. The [Laravel documentation](https://laravel.com/docs) is thorough, complete, and makes it a breeze to get started learning the framework.
+- Show Individual Recipes/Ratings http://localhost:8000/api/recipes/5 (Get) Request
 
-If you're not in the mood to read, [Laracasts](https://laracasts.com) contains over 900 video tutorials on a range of topics including Laravel, modern PHP, unit testing, JavaScript, and more. Boost the skill level of yourself and your entire team by digging into our comprehensive video library.
+- Add a rating http://localhost:8000/api/recipes/ratings/6 (POST) Request Body: "rating" - integer
 
-## Contributing
+- Updates Recipe http://localhost:8000/api/recipes/5 (PATCH) Request Body: Example data;
+"box_type": "fish",
+"title": "Lemon Sole",
+"slug": "lemon-sole",
+"short_title": "",
+"marketing_description": "The best fish dish",
+"season": "all",
+"base": "gnocchi",
+"protein_source": "seafood",
+"preparation_time_mins": "15",
+"shelf_life_days": "4",
+"equipment_needed": "Appetite",
+"origin_country": "Great Britain",
+"recipe_cuisine": "italian",
+"in_your_box": "sole, gnocchi, cherry tomatoes",
+"gousto_reference": "60",
+"bulletpoint1": "simple",
+"bulletpoint2": "light",
+"bulletpoint3": "declicous",
+"calories_kcal": "199",
+"protein_grams": "30",
+"fat_grams": "10",
+"carbs_grams": "10"
 
-Thank you for considering contributing to the Laravel framework! The contribution guide can be found in the [Laravel documentation](http://laravel.com/docs/contributions).
+- Delete recipe http://localhost:8000/api/recipes/2 (DELETE) Request
 
-## Security Vulnerabilities
+- Add Recipe http://localhost:8000/api/recipes (POST) Request Body: Example data;
+"box_type": "meat",
+"title": "Chilli Con Carne",
+"slug": "chilli-con-carne",
+"short_title": "",
+"marketing_description": "The best chilli",
+"season": "all",
+"base": "noodles",
+"protein_source": "seafood",
+"preparation_time_mins": "40",
+"shelf_life_days": "4",
+"equipment_needed": "Appetite",
+"origin_country": "Great Britain",
+"recipe_cuisine": "asian",
+"in_your_box": "king prawns, onion, tomatoes",
+"gousto_reference": "60",
+"bulletpoint1": "great",
+"bulletpoint2": "wonderful",
+"bulletpoint3": "incredible",
+"calories_kcal": "450",
+"protein_grams": "15",
+"fat_grams": "40",
+"carbs_grams": "10"
 
-If you discover a security vulnerability within Laravel, please send an e-mail to Taylor Otwell at taylor@laravel.com. All security vulnerabilities will be promptly addressed.
+- OAUTH Token http://localhost:8000/oauth/token (POST) Request Body: Example data;
+"grant_type": "password",
+"client_id": "2",
+"client_secret": "dlo3gqPC7UQdhegpOu9Bec8Bz2elnPzwAoZvbXpQ",
+"username": "rmorris144@gmail.com",
+"password": "ilovecats",
+"scope": "*"
 
-## License
+The client secret key is pulled from the oauth_clients table. This can be created by typing "php artisan passport:install".
 
-The Laravel framework is open-sourced software licensed under the [MIT license](http://opensource.org/licenses/MIT).
+- Get all recipes http://localhost:8000/api/recipes (GET) Request
+
+- Register user http://localhost:8000/api/register (POST) Request Body: Example data;
+"username": "ryanm",
+"email": "rmorris144@gmail.com",
+"password": "ilovecats"
+
+## Tests
+
+I have also provided some unit tests, I have not been able to vigorously test these API endpoints due to time and middleware issues.
+However I have provided the basic tests here for the get requests.
+
+## Stock
+With regards to the stock levels, I didn't quite understand where I was supposed to retrieve the data from so I have just implemented a count
+based on the box_type how many boxes we have in stock.
