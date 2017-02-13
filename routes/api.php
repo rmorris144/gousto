@@ -16,7 +16,7 @@ Route::group(['prefix' => 'recipes'], function () {
 		return $slug;
 	});
 
-	Route::post('/', 'RecipeController@store');
+	Route::post('/', 'RecipeController@store')->middleware('auth:api');
 
 	Route::patch('/{recipe}', 'RecipeController@update')->middleware('auth:api');
 

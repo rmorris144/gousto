@@ -24,19 +24,19 @@ class StoreRecipesRequests extends FormRequest
     public function rules()
     {
         return [
-//            'box_type' => 'required',
-//            'title' => 'required',
-//            'slug' => 'required',
-//            'season' => 'required',
-//            'base' => 'required',
-////            'protein_source' => 'required',
-////            'preparation_time_mins' => 'required',
-////            'shelf_life_days' => 'required',
-//            'equipment_needed' => 'required',
-//            'origin_country' => 'required',
-//            'recipe_cuisine' => 'required',
-//            'in_your_box' => 'required',
-//            'gousto_reference' => 'required',
+            'box_type' => 'required',
+            'title' => 'required',
+            'slug' => 'required',
+            'season' => 'required',
+            'base' => 'required',
+            'protein_source' => 'required',
+            'preparation_time_mins' => 'required',
+            'shelf_life_days' => 'required',
+            'equipment_needed' => 'required',
+            'origin_country' => 'required',
+            'recipe_cuisine' => 'required',
+            'in_your_box' => 'required',
+            'gousto_reference' => 'required',
         ];
     }
 }
