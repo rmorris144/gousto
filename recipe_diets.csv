@@ -1,0 +1,11 @@
+recipies_id,diet_type,calories_kcal,protein_grams,fat_grams,carbs_grams,preparation_time_mins,shelf_life_days,season,base,protein_source,created_at,updated_at
+1,meat,401,12,35,0,35,4,all,noodles,beef,<null>,<null>
+2,fish,524,12,22,0,40,4,all,pasta,seafood,<null>,<null>
+3,meat,609,17,29,0,35,4,all,pasta,pork,<null>,<null>
+4,vegetarian,508,28,20,0,50,4,all,,cheese,<null>,<null>
+5,meat,511,11,62,0,45,4,all,beans/lentils,pork,<null>,<null>
+6,meat,401,12,35,0,35,4,all,,pork,<null>,<null>
+7,meat,524,12,22,0,40,4,all,,chicken,<null>,<null>
+8,meat,609,17,29,0,35,3,all,,eggs,<null>,<null>
+9,meat,508,28,20,0,50,4,all,,fish,<null>,<null>
+10,meat,511,11,62,0,45,4,all,,pork,<null>,<null>

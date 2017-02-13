@@ -8,29 +8,24 @@ Route::get('/user', function (Request $request) {
 
 Route::post('/register', 'RegisterController@register');
 
-Route::group(['prefix' => 'topics'], function () {
+Route::group(['prefix' => 'recipes'], function () {
 
-	Route::get('/', 'TopicController@index');
+	Route::get('/', 'RecipeController@index');
 
-	Route::get('/{topic}', 'TopicController@show');
-
-	Route::post('/', 'TopicController@store')->middleware('auth:api');
-
-	Route::patch('/{topic}', 'TopicController@update')->middleware('auth:api'); 
-
-	Route::delete('/{topic}', 'TopicController@destroy')->middleware('auth:api'); 
-
-	Route::group(['prefix' => '/{topic}/posts'], function () {
-		Route::post('/', 'PostController@store')->middleware('auth:api');
-		Route::patch('/{post}', 'PostController@update')->middleware('auth:api');
-		Route::delete('/{post}', 'PostController@delete')->middleware('auth:api');
-
-		Route::group(['prefix' => '/{post}/likes'], function () {
-			Route::post('/', 'PostLikeController@store')->middleware('auth:api');
-		});
-
-		
+	Route::get('/{slug}', 'RecipeController@show', function($slug = 'chinese') {
+		return $slug;
 	});
+
+	Route::post('/', 'RecipeController@store');
+
+	Route::patch('/{recipe}', 'RecipeController@update')->middleware('auth:api');
+
+	Route::delete('/{recipe}', 'RecipeController@destroy')->middleware('auth:api');
+
+	Route::group(['prefix' => '/ratings/{recipe}'], function () {
+		Route::post('/', 'RecipeRatingController@store')->middleware('auth:api');
+	});
+
 });
 
 

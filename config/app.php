@@ -169,6 +169,7 @@ return [
 
         Laravel\Passport\PassportServiceProvider::class,
         Spatie\Fractal\FractalServiceProvider::class,
+        Cviebrock\EloquentSluggable\ServiceProvider::class,
 
         /*
          * Application Service Providers...

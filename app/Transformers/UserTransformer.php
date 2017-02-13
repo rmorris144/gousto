@@ -4,14 +4,18 @@ namespace App\Transformers;
 
 use App\User;
 
-class UserTransformer extends \League\Fractal\TransformerAbstract 
+use App\Recipies;
+
+use League\Fractal\TransformerAbstract;
+
+class UserTransformer extends TransformerAbstract
 {
 
 	public function transform(User $user)
 	{
 		return [
 			'username' => $user->username,
-			'avatar' => $user->avatar(),
+//			'avatar' => $user->avatar(),
 		];
 	}
 }
